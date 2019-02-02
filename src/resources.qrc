@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>YandexDisk.png</file>
+    </qresource>
+</RCC>
