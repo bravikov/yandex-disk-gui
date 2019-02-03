@@ -1,6 +1,7 @@
 #include "YandexDisk.h"
 #include <QMessageBox>
 #include <QProcess>
+#include <QAction>
 
 YandexDisk::YandexDisk(QObject* parent): QObject(parent) {}
 
@@ -11,7 +12,20 @@ void YandexDisk::showStatus() const
 
 void YandexDisk::start() const
 {
-    run("start", 3000);
+    QAction* action = dynamic_cast<QAction*>(sender());
+    QString actionText;
+    if (action != nullptr) {
+        action->setEnabled(false);
+        actionText = action->text();
+        action->setText(tr("Starting..."));
+    }
+
+    run("start", -1);
+
+    if (action != nullptr) {
+        action->setText(actionText);
+        action->setEnabled(true);
+    }
 }
 
 void YandexDisk::stop() const
