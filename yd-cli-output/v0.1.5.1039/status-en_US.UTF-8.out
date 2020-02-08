@@ -1,0 +1,20 @@
+Synchronization core status: idle
+Path to Yandex.Disk directory: '/home/bravikov/Yandex.Disk'
+	Total: 16.02 GB
+	Used: 14.04 GB
+	Available: 1.98 GB
+	Max file size: 50 GB
+	Trash size: 9.18 MB
+
+Last synchronized items:
+	file: 'Projects/Programs/yandex-disk-gui/.git/objects/5b/6b143d2aa5293d403de661be8bbbbee5671048'
+	file: 'Projects/Programs/yandex-disk-gui/.git/index'
+	file: 'Projects/Programs/yandex-disk-gui/.git/objects/0f/5b6e6e3ce9e5c1d1e65aa7e53a3876adb349b0'
+	directory: 'Projects/Programs/yandex-disk-gui/.git/objects/5b'
+	directory: 'Projects/Programs/yandex-disk-gui/.git/objects/0f'
+	file: 'Projects/Programs/yandex-disk-gui/yd-cli-output/v0.1.5.1039/status-en_US.UTF-8.out'
+	file: 'Projects/Programs/yandex-disk-gui/yd-cli-output/v0.1.5.1039/status-ru_RU.utf8.out'
+	file: 'Projects/Programs/yandex-disk-gui/.git/objects/94/bb4668370172c52e391057db5b7d412f6836e6'
+	file: 'Projects/Programs/yandex-disk-gui/.git/objects/37/53f0312f8f850d29aceaecdac0dc1b89a99007'
+	directory: 'Projects/Programs/yandex-disk-gui/.git/objects/94'
+

@@ -1,0 +1,63 @@
+Yandex.Disk 0.1.5.1039
+Usage:
+  yandex-disk start [OPTION]
+  yandex-disk stop [OPTION]
+  yandex-disk status [OPTION]
+  yandex-disk sync [OPTION]
+  yandex-disk token [-p, --password=PASSWORD] [OPTION] USERNAME [FILE]
+  yandex-disk publish [OPTION] FILE
+  yandex-disk unpublish FILE
+
+Commands:
+  start        start in daemon mode, performing synchronization. The current
+               state of the daemon can be read from the file ".sync/status"
+               in the sync directory.
+  stop         stop running daemon.
+  status       display status: sync state, errors,
+
+recently synchronized files, total and remaining space quota.
+  token        get OAuth token, encrypt and store it in specified file (by
+               default - /.config/yandex-disk/passwd). If -p PASSWORD or
+               --password PASSWORD options are not specified, password
+               will be read from STDIN.
+  sync         synchronize everything and exit (If daemon is started wait
+               for full sync and exit.
+  publish      make file/folder public, output public link to STDOUT.
+               Object will be copied to the root of sync folder.
+               To overwrite existing objects use
+               the option --overwrite.
+  unpublish    withdraw file from public access.
+  setup        launch the setup wizard.
+
+Options:
+  --config=FILE, -c FILE
+               read options from configuration file. Configuration
+               file must contain lines in the form of name=value.
+               Defaults to file ~/.config/yandex-disk/config.cfg.
+  --dir=DIR, -d DIR
+               path to Yandex.Disk directory.
+  --auth=FILE, -a FILE
+               read token from file. File must be prepared using
+               token command. Defaults to file ~/.config/yandex-disk/passwd.
+  --exclude-dirs=DIR1,DIR2,…
+               do not synchronize specified directories.
+  --read-only
+               only download changed files from server,
+               files changed locally, will be renamed to preserve
+               modifications.
+  --overwrite
+               overwrite localy changed files in read-only mode.
+  --no-daemon, -D
+               launch daemon without returning management to console.
+               To return management, daemon must be stopped,
+               by launching the command yandex-disk stop in another console or
+               by closing the current console.
+  --version, -v
+               display version information.
+  --proxy=PARAM
+             setup proxy. Allowable parameters:
+                              auto - use system proxy settings. These are used by default.
+                              no - do not use proxy.
+                              protocol,address,port,login,password - set manually.
+                              An example of setting proxy manually:
+                              proxy=socks4,my.proxy.local,1080,login,password
