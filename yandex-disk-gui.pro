@@ -25,11 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    src/about.cpp \
     src/main.cpp \
     src/YandexDisk.cpp
 
 HEADERS += \
-    src/YandexDisk.h
+    src/YandexDisk.h \
+    src/about.h \
+    src/yandex-disk-name-and-version.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
