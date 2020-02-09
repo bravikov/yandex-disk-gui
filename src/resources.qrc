@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>YandexDisk.png</file>
+        <file>YandexDiskInactive.png</file>
+        <file>YandexDiskSync.png</file>
     </qresource>
 </RCC>

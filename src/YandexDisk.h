@@ -2,8 +2,10 @@
 #define YANDEXDISK_H
 
 #include "yandex-disk-name-and-version.h"
+#include "status-parser.h"
 
 #include <QObject>
+#include <QTimer>
 
 class YandexDisk: public QObject
 {
@@ -17,6 +19,9 @@ public:
     void stop() const;
     const YandexDiskNameAndVersion& getNameAndVersion() const;
     QString getHelp() const;
+
+signals:
+    void syncStatusChanged(const SyncStatus status);
 
 private:
     struct Output
@@ -40,6 +45,9 @@ private:
     };
 
     YandexDiskNameAndVersionImpl m_yandexDiskNameAndVersionImpl;
+
+    SyncStatus m_syncStatus = SyncStatus::Unknown;
+    void updateSyncStatus();
 };
 
 #endif // YANDEXDISK_H

@@ -1,6 +1,7 @@
 #include "YandexDisk.h"
 #include "about.h"
 #include "yandex-disk-name-and-version.h"
+#include "tray-icon.h"
 
 #include <QApplication>
 #include <QSystemTrayIcon>
@@ -16,8 +17,6 @@ int main(int argc, char *argv[])
 
     YandexDisk yandexDisk;
 
-    QSystemTrayIcon tray{QIcon{":/YandexDisk.png"}};
-
     QMenu menu;
     menu.addAction(QObject::tr("Status"), &yandexDisk, &YandexDisk::showStatus);
     menu.addSeparator();
@@ -30,8 +29,9 @@ int main(int argc, char *argv[])
     About about{yandexDisk.getNameAndVersion()};
     menu.addAction(QObject::tr("About"), &about, &About::show);
 
-    tray.setContextMenu(&menu);
-    tray.show();
+    TrayIcon trayIcon{&menu};
+    a.connect(&yandexDisk, &YandexDisk::syncStatusChanged,
+              &trayIcon, &TrayIcon::updateSyncStatus);
 
     return a.exec();
 }

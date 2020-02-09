@@ -40,7 +40,13 @@ YandexDisk::YandexDiskNameAndVersionImpl::operator QString() const
 YandexDisk::YandexDisk(QObject* parent)
     : QObject(parent)
     , m_yandexDiskNameAndVersionImpl{*this}
-{}
+{
+    emit syncStatusChanged(m_syncStatus);
+
+    QTimer* statusTimer = new QTimer{this};
+    connect(statusTimer, &QTimer::timeout, this, &YandexDisk::updateSyncStatus);
+    statusTimer->start(2000);
+}
 
 void YandexDisk::showStatus() const
 {
@@ -88,8 +94,6 @@ YandexDisk::Output YandexDisk::run(const QString& arguments, const int timeout_m
     QProcess process;
     process.start(processName, {arguments});
     if (!process.waitForFinished(timeout_ms)) {
-        QMessageBox::warning(nullptr, tr("Yandex Disk"),
-                             tr("Error while the %1 request.").arg(arguments));
         return output;
     }
 
@@ -105,6 +109,8 @@ void YandexDisk::runAndShowOutput(const QString& command, const int timeout_ms) 
     const auto output = run(command, timeout_ms);
 
     if (!output.finished) {
+        QMessageBox::warning(nullptr, tr("Yandex Disk"),
+                         tr("Error while the %1 request.").arg(command));
         return;
     }
 
@@ -116,4 +122,18 @@ void YandexDisk::runAndShowOutput(const QString& command, const int timeout_ms) 
     message += output.stdOutput;
 
     QMessageBox::information(nullptr, tr("Yandex Disk"), message);
+}
+
+void YandexDisk::updateSyncStatus()
+{
+    const auto output = run("status", 1000);
+
+    if (!output.finished) {
+        return;
+    }
+
+    StatusParser statusParser;
+    const auto status = statusParser.parse(output.stdOutput);
+    m_syncStatus = status.syncStatus;
+    emit syncStatusChanged(m_syncStatus);
 }

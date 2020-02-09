@@ -27,11 +27,15 @@ CONFIG += c++11
 SOURCES += \
     src/about.cpp \
     src/main.cpp \
-    src/YandexDisk.cpp
+    src/YandexDisk.cpp \
+    src/status-parser.cpp \
+    src/tray-icon.cpp
 
 HEADERS += \
     src/YandexDisk.h \
     src/about.h \
+    src/status-parser.h \
+    src/tray-icon.h \
     src/yandex-disk-name-and-version.h
 
 # Default rules for deployment.
